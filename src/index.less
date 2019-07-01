@@ -1,0 +1,20 @@
+@import '~iview/src/styles/index.less';
+
+@menu-dark-title: #fff;
+@menu-dark-active-bg: #fdf1f1;
+@layout-sider-background: #001529;
+.ivu-menu-item-selected::before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  background: #e54a49;
+  top: 0;
+  left: 0;
+}
+.ivu-menu-item-selected span {
+  color: #e54a49;
+}
+.ivu-menu-item-selected i {
+  color: #e54a49;
+}
