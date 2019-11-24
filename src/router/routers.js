@@ -1,5 +1,5 @@
 import Main from '@/components/main';
-// import parentView from '@/components/parent-view';
+import parentView from '@/components/parent-view';
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -51,173 +51,191 @@ export default [
     ]
   },
   {
-    path: '/product',
-    name: 'product',
+    path: '/components',
+    name: 'components',
     meta: {
-      icon: 'md-home',
-      title: '商品信息查询',
-      access: ['admin'],
-      showAlways: true
+      icon: 'logo-buffer',
+      title: '组件'
     },
     component: Main,
     children: [
       {
-        path: 'productInquire',
-        name: 'productInquire',
+        path: 'count_to_page',
+        name: 'count_to_page',
         meta: {
-          icon: 'md-create',
-          title: '商品查询'
+          icon: 'md-trending-up',
+          title: '数字渐变'
         },
-        component: () => import('@/view/product/productInquire')
+        component: () => import('@/view/components/count-to/count-to.vue')
       },
       {
-        path: 'operator',
-        name: 'operator',
+        path: 'drag_list_page',
+        name: 'drag_list_page',
         meta: {
-          icon: 'md-create',
-          title: '操作员管理'
+          icon: 'ios-infinite',
+          title: '拖拽列表'
         },
-        component: () => import('@/view/product/operator')
+        component: () => import('@/view/components/drag-list/drag-list.vue')
       },
       {
-        path: 'packaging',
-        name: 'packaging',
+        path: 'drag_drawer_page',
+        name: 'drag_drawer_page',
         meta: {
-          icon: 'md-create',
-          title: '包装设置查询'
+          icon: 'md-list',
+          title: '可拖拽抽屉'
         },
-        component: () => import('@/view/product/packaging')
+        component: () => import('@/view/components/drag-drawer')
+      },
+      {
+        path: 'tables_page',
+        name: 'tables_page',
+        meta: {
+          icon: 'md-grid',
+          title: '多功能表格'
+        },
+        component: () => import('@/view/components/tables/tables.vue')
+      },
+      {
+        path: 'editor_page',
+        name: 'editor_page',
+        meta: {
+          icon: 'ios-create',
+          title: '富文本编辑器'
+        },
+        component: () => import('@/view/components/editor/editor.vue')
       }
     ]
   },
   {
-    path: '/infoManage',
-    name: 'infoManage',
+    path: '/excel',
+    name: 'excel',
     meta: {
-      // hideInBread: true
-      access: ['admin'],
-      icon: 'md-settings',
-      title: '溯源信息管理'
+      icon: 'ios-stats',
+      title: 'EXCEL'
     },
     component: Main,
     children: [
       {
-        path: 'infoImport',
-        name: 'infoImport',
+        path: 'upload-excel',
+        name: 'upload-excel',
         meta: {
-          icon: 'md-person-add',
-          title: '溯源信息导入'
+          icon: 'md-add',
+          title: '导入EXCEL'
         },
-        component: () => import('@/view/infoManage/infoImport')
+        component: () => import('@/view/excel/upload-excel.vue')
       },
       {
-        path: 'infoReview',
-        name: 'infoReview',
+        path: 'export-excel',
+        name: 'export-excel',
         meta: {
-          icon: 'md-person',
-          title: '导入信息审核'
-          // hideInMenu: true
+          icon: 'md-download',
+          title: '导出EXCEL'
         },
-        component: () => import('@/view/infoManage/infoReview')
-      },
-      {
-        path: 'infoInquire',
-        name: 'infoInquire',
-        meta: {
-          icon: 'md-person',
-          title: '溯源信息查询'
-          // hideInMenu: true
-        },
-        component: () => import('@/view/infoManage/infoInquire')
+        component: () => import('@/view/excel/export-excel.vue')
       }
-    
     ]
   },
-  // {
-  //   path: '/basicSettings',
-  //   name: 'basicSettings',
-  //   meta: {
-  //     icon: 'md-home',
-  //     title: '基础设置',
-  //     // access: ['super_admin'],
-  //     showAlways: true
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'operator',
-  //       name: 'operator',
-  //       meta: {
-  //         icon: 'md-create',
-  //         title: '操作员管理'
-  //       },
-  //       component: () => import('@/view/basicSettings/operator')
-  //     },
-  //     {
-  //       path: 'roleManage',
-  //       name: 'roleManage',
-  //       meta: {
-  //         icon: 'md-create',
-  //         title: '角色权限管理'
-  //       },
-  //       component: () => import('@/view/basicSettings/roleManage')
-  //     },
-     
-  //   ]
-  // },
-
-
-
-
-  // 管理端
   {
-    path: '/basicSettings_M',
-    name: 'basicSettings_M',
+    path: '/directive',
+    name: 'directive',
     meta: {
-      icon: 'md-home',
-      title: '基础设置',
-      access: ['super_admin'],
-      showAlways: true
+      hideInBread: true
     },
     component: Main,
     children: [
       {
-        path: 'enterpriseMana',
-        name: 'enterprise',
+        path: 'directive_page',
+        name: 'directive_page',
         meta: {
-          icon: 'md-create',
-          title: '企业端管理'
+          icon: 'ios-navigate',
+          title: '指令'
         },
-        component: () => import('@/view/basicSettings_M/enterprise')
-      },
-      {
-        path: 'operatorM',
-        name: 'operatorM',
-        meta: {
-          icon: 'md-create',
-          title: '操作员管理'
-        },
-        component: () => import('@/view/basicSettings_M/operatorM')
-      },
-      {
-        path: 'roleManage',
-        name: 'roleManage',
-        meta: {
-          icon: 'md-create',
-          title: '角色权限管理'
-        },
-        component: () => import('@/view/basicSettings_M/roleManage')
-      },
-      {
-        path: 'labelManage',
-        name: 'labelManage',
-        meta: {
-          icon: 'md-create',
-          title: '角色权限管理'
-        },
-        component: () => import('@/view/basicSettings_M/labelManage')
-      },
-     
+        component: () => import('@/view/directive/directive.vue')
+      }
     ]
   },
+  {
+    path: '/multilevel',
+    name: 'multilevel',
+    meta: {
+      icon: 'md-menu',
+      title: '多级菜单'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'level_2_1',
+        name: 'level_2_1',
+        meta: {
+          icon: 'md-funnel',
+          title: '二级-1'
+        },
+        component: () => import('@/view/multilevel/level-2-1.vue')
+      },
+      {
+        path: 'level_2_2',
+        name: 'level_2_2',
+        meta: {
+          access: ['super_admin'],
+          icon: 'md-funnel',
+          showAlways: true,
+          title: '二级-2'
+        },
+        component: parentView,
+        children: [
+          {
+            path: 'level_2_2_1',
+            name: 'level_2_2_1',
+            meta: {
+              icon: 'md-funnel',
+              title: '三级'
+            },
+            component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
+          },
+          {
+            path: 'level_2_2_2',
+            name: 'level_2_2_2',
+            meta: {
+              icon: 'md-funnel',
+              title: '三级'
+            },
+            component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+          }
+        ]
+      },
+      {
+        path: 'level_2_3',
+        name: 'level_2_3',
+        meta: {
+          icon: 'md-funnel',
+          title: '二级-3'
+        },
+        component: () => import('@/view/multilevel/level-2-3.vue')
+      }
+    ]
+  },
+  {
+    path: '/401',
+    name: 'error_401',
+    meta: {
+      hideInMenu: true
+    },
+    component: () => import('@/view/error-page/401.vue')
+  },
+  {
+    path: '/500',
+    name: 'error_500',
+    meta: {
+      hideInMenu: true
+    },
+    component: () => import('@/view/error-page/500.vue')
+  },
+  {
+    path: '*',
+    name: 'error_404',
+    meta: {
+      hideInMenu: true
+    },
+    component: () => import('@/view/error-page/404.vue')
+  }
 ];

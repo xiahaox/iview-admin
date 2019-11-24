@@ -1,6 +1,6 @@
 <template>
   <Layout style="height: 100%" class="main">
-      <Sider
+    <Sider
       hide-trigger
       collapsible
       :width="256"
@@ -14,7 +14,7 @@
         ref="sideMenu"
         :active-name="$route.name"
         :collapsed="collapsed"
-         @on-select="turnToPage"
+        @on-select="turnToPage"
         :menu-list="menuList"
       >
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
@@ -22,7 +22,9 @@
           <!-- <img v-show="!collapsed" :src="minLogo" key="min-logo" /> -->
           <!-- <img v-show="collapsed" :src="minLogo" key="min-logo" /> -->
           <img v-show="collapsed" :src="minLogo" key="min-logo" />
-          <div v-show="!collapsed"> <img :src="minLogo" key="min-logo" /><span>中钞区块链溯源平台企业端</span></div>
+          <div v-show="!collapsed">
+            <img :src="logo" key="min-logo" />
+          </div>
         </div>
       </side-menu>
     </Sider>
@@ -30,8 +32,8 @@
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user :message-unread-count="unreadCount" :user-avator="userAvator"/>
-         
+          <user :message-unread-count="unreadCount" :user-avator="userAvator" />
+
           <!-- <error-store
             v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader"
             :has-read="hasReadErrorPage"
@@ -42,12 +44,10 @@
       </Header>
       <Content class="main-content-con">
         <Layout class="main-layout-con">
-          <div class="tag-nav-wrapper">
-            
-          </div>
+          <div class="tag-nav-wrapper"></div>
           <Content class="content-wrapper">
             <keep-alive>
-              <router-view/>
+              <router-view />
             </keep-alive>
           </Content>
         </Layout>
@@ -60,6 +60,7 @@ import SideMenu from './components/side-menu';
 import HeaderBar from './components/header-bar';
 import User from './components/user';
 import minLogo from '@/assets/images/logo-min.jpg';
+import logo from '@/assets/images/logo.jpg';
 import { mapMutations, mapActions, mapGetters } from 'vuex';
 import { getNewTagList, routeEqual } from '@/libs/util';
 import routers from '@/router/routers';
@@ -76,11 +77,11 @@ export default {
       collapsed: false,
       theme: 'dark',
       minLogo,
+      logo,
       isFullscreen: false
     };
   },
   computed: {
-   
     menuList() {
       return this.$store.getters.menuList;
     },
@@ -91,7 +92,6 @@ export default {
     userAvator() {
       return this.$store.state.user.avatorImgPath;
     }
-
   },
   methods: {
     handleCollapsedChange(state) {
@@ -116,12 +116,10 @@ export default {
       });
     }
   },
-  watch: {
-   
-  },
+  watch: {},
   mounted() {
     console.log(this.$store.getters.menuList);
-    
+
     /**
      * @description 初始化设置面包屑导航和标签导航
      */
@@ -129,10 +127,10 @@ export default {
 };
 </script>
 <style>
-.ivu-menu-item{
-  background: #010813 !important
+.ivu-menu-item {
+  background: #010813 !important;
 }
-.ivu-menu-submenu-title{
-  background: #06152a !important
+.ivu-menu-submenu-title {
+  background: #06152a !important;
 }
 </style>

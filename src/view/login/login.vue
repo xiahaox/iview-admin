@@ -4,8 +4,7 @@
 
 <template>
   <div class="login">
-    <!-- <div class="topfont">地方门户管理平台</div> -->
-    <img class="leftImg" src="../../assets/images/leftImg.png" alt>
+    <!-- <img class="leftImg" src="../../assets/images/leftImg.png" alt> -->
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false" style="height:280px">
         <div class="form-con">
@@ -31,16 +30,16 @@ export default {
     ...mapActions({
       getUserInfo: 'user/getUserInfo'
     }),
-    handleSubmit ({ userName, password }) {
+    handleSubmit({ userName, password }) {
       this.handleLogin({ userName, password }).then(res => {
         // console.log(11);
-        
+
         this.getUserInfo().then(res => {
           this.$router.push({
             name: this.$config.homeName
-          })
-        })
-      })
+          });
+        });
+      });
     }
   }
 };

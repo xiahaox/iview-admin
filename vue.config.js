@@ -24,11 +24,6 @@ module.exports = {
   // then change this to '/my-app/'
   baseUrl: BASE_URL,
 
-
-
-
-
-
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // 如果你不需要使用eslint，把lintOnSave设为false即可
@@ -49,16 +44,16 @@ module.exports = {
   //   }
   // }
 
-  devServer:{
-    proxy:{
-      '/api':{//对所有的/api开头的url生效
-        target: 'http://39.107.241.11:8080',//转发到siwei.me上
-        changeOrigin: true,//如果设置为true,那么本地会虚拟一个服务端接收你的请求并代你发送该请求，这样就不会有跨域问题了
-        pathRewrite:{//路径重写
-          '^/api':''//把url中的/api替换成'',也就是去掉
+  devServer: {
+    proxy: {
+      '/api': {// 对所有的/api开头的url生效
+        target: 'http://39.107.241.11:8080', // 转发到siwei.me上
+        changeOrigin: true, // 如果设置为true,那么本地会虚拟一个服务端接收你的请求并代你发送该请求，这样就不会有跨域问题了
+        pathRewrite: {// 路径重写
+          '^/api': ''// 把url中的/api替换成'',也就是去掉
         }
-      },
-    
+      }
+
     }
   }
 
