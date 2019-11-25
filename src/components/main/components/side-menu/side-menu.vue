@@ -106,9 +106,20 @@ export default {
   },
   mounted () {
     this.openedNames = getUnion(this.openedNames, this.getOpenedNamesByActiveName(name))
+    console.log(this.menuList);
   }
 }
 </script>
 <style lang="less">
 @import './side-menu.less';
+</style>
+<style lang="less" scope>
+  .ivu-menu-submenu-title,.ivu-menu-item{
+  background: #06152a !important;
+}
+.ivu-menu-submenu{
+.ivu-menu-item {
+  background: #010813 !important;
+}
+}
 </style>

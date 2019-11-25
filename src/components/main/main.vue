@@ -21,9 +21,9 @@
         <div class="logo-con">
           <!-- <img v-show="!collapsed" :src="minLogo" key="min-logo" /> -->
           <!-- <img v-show="collapsed" :src="minLogo" key="min-logo" /> -->
-          <img v-show="collapsed" :src="minLogo" key="min-logo" />
+          <!-- <img v-show="collapsed" :src="minLogo" key="min-logo" /> -->
           <div v-show="!collapsed">
-            <img :src="logo" key="min-logo" />
+            <!-- <img :src="logo" key="min-logo" /> -->
           </div>
         </div>
       </side-menu>
@@ -59,8 +59,8 @@
 import SideMenu from './components/side-menu';
 import HeaderBar from './components/header-bar';
 import User from './components/user';
-import minLogo from '@/assets/images/logo-min.jpg';
-import logo from '@/assets/images/logo.jpg';
+import minLogo from '@/assets/images/aa.jpg';
+import logo from '@/assets/images/vue-title.jpg';
 import { mapMutations, mapActions, mapGetters } from 'vuex';
 import { getNewTagList, routeEqual } from '@/libs/util';
 import routers from '@/router/routers';
@@ -94,6 +94,11 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'setBreadCrumb',
+      'addTag',
+      'setHomeRoute'
+    ]),
     handleCollapsedChange(state) {
       this.collapsed = state;
     },
@@ -116,21 +121,29 @@ export default {
       });
     }
   },
-  watch: {},
+  watch: {
+    '$route'(newRoute) {
+      const { name, query, params, meta } = newRoute
+      this.addTag({
+        route: { name, query, params, meta },
+        type: 'push'
+      })
+      this.setBreadCrumb(newRoute)
+    }
+  },
   mounted() {
-    console.log(this.$store.getters.menuList);
+    this.setHomeRoute(routers)
+    const { name, params, query, meta } = this.$route
+    this.addTag({
+      route: { name, params, query, meta }
+    })
+    this.setBreadCrumb(this.$route)
 
     /**
-     * @description 初始化设置面包屑导航和标签导航
+     * @description 初始化设置标签导航
      */
   }
 };
 </script>
 <style>
-.ivu-menu-item {
-  background: #010813 !important;
-}
-.ivu-menu-submenu-title {
-  background: #06152a !important;
-}
 </style>
