@@ -176,7 +176,6 @@ export default [
         path: 'level_2_2',
         name: 'level_2_2',
         meta: {
-          access: ['super_admin'],
           icon: 'md-funnel',
           showAlways: true,
           title: '二级-2'
@@ -211,6 +210,24 @@ export default [
           title: '二级-3'
         },
         component: () => import('@/view/multilevel/level-2-3.vue')
+      }
+    ]
+  },
+  {
+    path: '/personal',
+    name: 'personal',
+    meta: {
+      hideInMenu: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'password',
+        name: 'password',
+        meta: {
+          hideInMenu: true
+        },
+        component: () => import('@/view/reset-password/password.vue')
       }
     ]
   },

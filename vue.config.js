@@ -35,19 +35,11 @@ module.exports = {
   },
   // 打包时不生成.map文件
   productionSourceMap: false,
-  // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
-  // devServer: {
-  //   '/u': {
-  //     target: 'http://39.104.108.113:8001/', // 后台服务器的ip地址
-  //     // pathRewrite: { '^/u': '/u' },
-  //     changeOrigin: true
-  //   }
-  // }
 
   devServer: {
     proxy: {
       '/api': {// 对所有的/api开头的url生效
-        target: 'http://39.107.241.11:8080', // 转发到siwei.me上
+        target: 'http://39.107.241.11:8080',
         changeOrigin: true, // 如果设置为true,那么本地会虚拟一个服务端接收你的请求并代你发送该请求，这样就不会有跨域问题了
         pathRewrite: {// 路径重写
           '^/api': ''// 把url中的/api替换成'',也就是去掉

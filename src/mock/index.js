@@ -1,5 +1,5 @@
 import Mock from 'mockjs';
-import { login, logout, getUserInfo } from './login'
+import { login, logout, getUserInfo, getUserInfo1 } from './login'
 import { getTableData, getDragList, uploadImage } from './data'
 
 // 配置Ajax请求延时，可用来测试网络延迟大时项目中一些效果
@@ -8,8 +8,8 @@ Mock.setup({
 });
 
 // 登录相关和获取用户信息
-Mock.mock('https://www.easy-mock.com/mock/5add9213ce4d0e69998a6f51/iview-admin/login', login)
-Mock.mock(/\/get_info/, getUserInfo)
+Mock.mock(/\/login/, login)
+Mock.mock(/\/get_info/, getUserInfo1)
 Mock.mock(/\/logout/, logout)
 Mock.mock(/\/get_table_data/, getTableData)
 Mock.mock(/\/get_drag_list/, getDragList)

@@ -30,13 +30,15 @@ const showThisMenuEle = (item, access) => {
     else return false;
   } else return true;
 };
+const showThisMenuEle1 = (item, accessList) => {
+  return accessList.includes(item.name)
+}
 /**
  * @param {Array} list 通过路由列表得到菜单列表
  * @returns {Array}
  */
+// 1. 根据 role身份匹配 
 export const getMenuByRouter = (list, access) => {
-  console.log(list, access);
-  
   let res = []
   forEach(list, item => {
     if (!item.meta || (item.meta && !item.meta.hideInMenu)) {
@@ -52,8 +54,25 @@ export const getMenuByRouter = (list, access) => {
       if (showThisMenuEle(item, access)) res.push(obj)
     }
   })
-  console.log(res);
-  
+  return res
+}
+// 2. 根据权限json列表
+
+export const getMenuByRouter1 = (list, accessList) => {
+  let res = []
+  forEach(list, item => {
+    if (!item.meta || (item.meta && !item.meta.hideInMenu)) {
+      let obj = {
+        icon: (item.meta && item.meta.icon) || '',
+        name: item.name,
+        meta: item.meta
+      }
+      if ((hasChild(item) || (item.meta && item.meta.showAlways)) && showThisMenuEle1(item, accessList)) {
+        obj.children = getMenuByRouter(item.children, accessList)
+      }
+      if (showThisMenuEle1(item, accessList)) res.push(obj)
+    }
+  })
   return res
 }
 
@@ -249,7 +268,7 @@ export const getArrayFromFile = file => {
     let reader = new FileReader();
     reader.readAsText(file); // 以文本格式读取
     let arr = [];
-    reader.onload = function(evt) {
+    reader.onload = function (evt) {
       let data = evt.target.result; // 读到的数据
       let pasteData = data.trim();
       arr = pasteData
@@ -382,7 +401,7 @@ export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
       window.webkitRequestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       window.msRequestAnimationFrame ||
-      function(callback) {
+      function (callback) {
         return window.setTimeout(callback, 1000 / 60);
       };
   }

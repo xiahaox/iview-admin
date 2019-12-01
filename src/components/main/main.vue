@@ -20,10 +20,8 @@
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <div class="logo-con">
           <!-- <img v-show="!collapsed" :src="minLogo" key="min-logo" /> -->
-          <!-- <img v-show="collapsed" :src="minLogo" key="min-logo" /> -->
-          <!-- <img v-show="collapsed" :src="minLogo" key="min-logo" /> -->
           <div v-show="!collapsed">
-            <!-- <img :src="logo" key="min-logo" /> -->
+            <img :src="minLogo" key="min-logo" class="left-title-img" />
           </div>
         </div>
       </side-menu>
@@ -32,7 +30,7 @@
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <user :message-unread-count="unreadCount" :user-avator="userAvator" />
+          <user :message-unread-count="unreadCount" :user-avator="avatorImgPath" />
 
           <!-- <error-store
             v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader"
@@ -59,9 +57,9 @@
 import SideMenu from './components/side-menu';
 import HeaderBar from './components/header-bar';
 import User from './components/user';
-import minLogo from '@/assets/images/aa.jpg';
+import minLogo from '@/assets/images/bbb.jpg';
 import logo from '@/assets/images/vue-title.jpg';
-import { mapMutations, mapActions, mapGetters } from 'vuex';
+import { mapMutations, mapActions, mapGetters, mapState } from 'vuex';
 import { getNewTagList, routeEqual } from '@/libs/util';
 import routers from '@/router/routers';
 import './main.less';
@@ -82,23 +80,14 @@ export default {
     };
   },
   computed: {
-    menuList() {
-      return this.$store.getters.menuList;
-    },
-
-    unreadCount() {
-      return this.$store.state.user.unreadCount;
-    },
-    userAvator() {
-      return this.$store.state.user.avatorImgPath;
-    }
+    ...mapGetters(['menuList']),
+    ...mapState({
+      avatorImgPath: state => state.user.avatorImgPath,
+      unreadCount: state => state.user.avatorImgPath
+    })
   },
   methods: {
-    ...mapMutations([
-      'setBreadCrumb',
-      'addTag',
-      'setHomeRoute'
-    ]),
+    ...mapMutations(['setBreadCrumb', 'addTag', 'setHomeRoute']),
     handleCollapsedChange(state) {
       this.collapsed = state;
     },
@@ -122,22 +111,22 @@ export default {
     }
   },
   watch: {
-    '$route'(newRoute) {
-      const { name, query, params, meta } = newRoute
+    $route(newRoute) {
+      const { name, query, params, meta } = newRoute;
       this.addTag({
         route: { name, query, params, meta },
         type: 'push'
-      })
-      this.setBreadCrumb(newRoute)
+      });
+      this.setBreadCrumb(newRoute);
     }
   },
   mounted() {
-    this.setHomeRoute(routers)
-    const { name, params, query, meta } = this.$route
+    this.setHomeRoute(routers);
+    const { name, params, query, meta } = this.$route;
     this.addTag({
       route: { name, params, query, meta }
-    })
-    this.setBreadCrumb(this.$route)
+    });
+    this.setBreadCrumb(this.$route);
 
     /**
      * @description 初始化设置标签导航
