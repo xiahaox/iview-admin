@@ -1,6 +1,39 @@
-# su_yuan
+#  iView Admin
 
-> y
+## Introduction
+
+iView Admin is a front-end management background integration solution. It based on [Vue.js](https://github.com/vuejs/vue) and use the UI Toolkit [iView](https://github.com/iview/iview).
+
+- [Document](https://lison16.github.io/iview-admin-doc/)
+- [Preview](https://admin.iviewui.com/)
+
+## Features
+
+- Router
+    - Dynamic routing
+    - With reference page
+- Login / Logout
+- Permission Authentication
+- Components
+    - count-to
+    - drag-drawer
+    - drag-list
+    - editor
+    - tables
+- Excel
+    - export-excel
+    - upload-excel
+- Multilevel
+    - level-2-1
+    - level-2-2
+    - level-2-3
+- Reset-password
+- Error Page
+    - 403
+    - 404
+    - 500
+- Tag navigation
+- Breadcrumb navigation
 
 ## Build Setup
 
